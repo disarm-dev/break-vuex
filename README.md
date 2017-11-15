@@ -1,3 +1,3 @@
 # break-vuex
 
-Deployed at test-vuex.surge.sh
+Deployed at http://test-vuex.surge.sh
