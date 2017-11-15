@@ -34,9 +34,6 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
-  import times from 'lodash/times'
-
   import {fake_record} from './faker'
 
   export default {
@@ -51,9 +48,9 @@
       }
     },
     computed: {
-      ...mapState({
-        store_records: state => state.records
-      }),
+      store_records() {
+        return this.$store.state.records
+      },
       reversed_page_records() {
         return this.page_records.slice(-20)
       },
@@ -63,12 +60,12 @@
     },
     methods: {
       add_page() {
-        times(this.push_count, () => {
-          this.page_count = (this.page_records.length + 1)
-          let response = fake_record(this.page_count)
+        for(var i=0; i < this.push_count; i++){
+          this.page_records_count = (this.page_records.length + 1)
+          let response = fake_record(this.page_records_count)
           if (this.freeze) response = Object.freeze(response)
           this.page_records.push(response)
-        })
+        }
       },
       clear_page() {
         this.page_records = []
