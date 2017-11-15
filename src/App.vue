@@ -21,9 +21,9 @@
       </div>
       <div class="flex-item">
         <h2>Vuex Store</h2>
+        <h3>{{store_records.length}} store rows</h3>
         <button @click="clear_store">Clear</button>
 
-        <h3>{{store_records.length}} store rows</h3>
         <ul>
           <li v-for="{id} in reversed_store_records">{{id}}</li>
         </ul>
