@@ -1,4 +1,4 @@
-import {times} from 'lodash'
+import times from 'lodash/times'
 
 import Vue from 'vue'
 import App from './App.vue'

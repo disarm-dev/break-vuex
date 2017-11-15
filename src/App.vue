@@ -35,7 +35,7 @@
 
 <script>
   import {mapState} from 'vuex'
-  import {times} from 'lodash'
+  import times from 'lodash/times'
 
   import {fake_record} from './faker'
 

@@ -1,5 +1,8 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const Visualizer = require('webpack-visualizer-plugin')
+
 
 module.exports = {
   entry: './src/main.js',
@@ -16,19 +19,13 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      }, {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
-          }
+          loaders: {}
           // other vue-loader options go here
         }
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -65,14 +62,18 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        ie8: false,
+        beautify: false,
+        ecma: 6,
+        compress: true,
+        comments: false
       }
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    // new Visualizer()
   ])
 }
